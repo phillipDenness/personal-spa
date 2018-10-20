@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "dist/personal-spa/",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -39,3 +39,7 @@ testem.log
 Thumbs.db
 
 \.editorconfig
+
+\.firebase/hosting\.cHVibGlj\.cache
+
+*.cache
