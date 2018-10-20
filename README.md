@@ -1,6 +1,7 @@
 # PersonalSpa
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+Live server is hosted on Firebase: https://personal-website-1c8aa.firebaseapp.com
 
 ## Development server
 
