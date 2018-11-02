@@ -44,6 +44,6 @@ Thumbs.db
 
 *.cache
 
-src/environments/
-
 \.vscode/settings\.json
+
+\.firebaserc
