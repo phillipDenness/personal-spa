@@ -47,3 +47,7 @@ Thumbs.db
 \.vscode/settings\.json
 
 \.firebaserc
+
+src/environments/environment\.prod\.ts
+
+src/environments/environment\.ts
