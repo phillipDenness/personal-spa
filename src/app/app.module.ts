@@ -10,7 +10,6 @@ import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AboutCardsComponent } from './about-cards/about-cards.component';
-import { AboutCardComponent } from './about-card/about-card.component';
 
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,6 +19,9 @@ import { JobMapComponent } from './job-map/job-map.component';
 import * as firebase from 'firebase';
 import { APIResolver } from './pdf-resolver';
 import { ProjectsComponent } from './projects/projects.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FooterComponent } from './footer/footer.component';
+import { GumtreeProjectComponent } from './gumtree-project/gumtree-project.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/about', pathMatch: 'full'},
@@ -30,16 +32,15 @@ const appRoutes: Routes = [
         component: AboutCardsComponent
       },
       {
-        path: ':id',
-        component: AboutCardComponent
-      }
+        path: 'profile',
+        component: ProfileComponent
+      },
     ]
   },
-  { path: 'projects', component: ProjectsComponent, resolve: { items: APIResolver }},
+  { path: 'pdf', component: ProjectsComponent, resolve: { items: APIResolver }},
+  { path: 'gumtree', component: GumtreeProjectComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
-
-
 
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -50,8 +51,10 @@ firebase.initializeApp(environment.firebase);
     NavBarComponent,
     AboutCardsComponent,
     ProjectsComponent,
-    AboutCardComponent,
-    JobMapComponent
+    JobMapComponent,
+    ProfileComponent,
+    FooterComponent,
+    GumtreeProjectComponent
   ],
   imports: [
     BrowserModule,

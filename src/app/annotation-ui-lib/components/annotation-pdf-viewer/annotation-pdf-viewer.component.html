@@ -1,12 +1,15 @@
-<app-comments *ngIf="annotate"></app-comments>
-
-<div id="annotation-wrapper">
-    <app-contextual-toolbar></app-contextual-toolbar>
-
-    <div id="content-wrapper"
-         #contentWrapper
-         (scroll)="handlePdfScroll($event)"
-         (click)="getClickedPage($event)">
-        <div id="viewer" #viewer class="pdfViewer"></div>
+<div class="row">
+    <div class="col-xs-12 col-sm-3">
+        <app-comments *ngIf="annotate"></app-comments>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <div id="annotation-wrapper">
+            <app-contextual-toolbar #contextualToolbar></app-contextual-toolbar>
+            <div id="content-wrapper"
+                #contentWrapper
+                (click)="handleClick($event)">
+                <div id="viewer" #viewer class="pdfViewer"></div>
+            </div>
+        </div>
     </div>
 </div>

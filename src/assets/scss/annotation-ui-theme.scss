@@ -97,7 +97,6 @@
     top: 0px;
   }
   
-  
   .annotationLayer section {
     position: absolute;
   }
@@ -124,24 +123,6 @@
   .annotationLayer .textAnnotation img {
     position: absolute;
     cursor: pointer;
-  }
-  
-  .annotationLayer .popupWrapper {
-    position: absolute;
-    width: 20em;
-  }
-  
-  .annotationLayer .popup {
-    position: absolute;
-    z-index: 200;
-    max-width: 20em;
-    background-color: #FFFF99;
-    box-shadow: 0px 2px 5px #333;
-    border-radius: 2px;
-    padding: 0.6em;
-    margin-left: 5px;
-    cursor: pointer;
-    word-wrap: break-word;
   }
   
   .annotationLayer .popup h1 {
@@ -181,16 +162,6 @@
   .pdfViewer .page canvas {
     margin: 0;
     display: block;
-  }
-  
-  .pdfViewer .page .loadingIcon {
-    position: absolute;
-    display: block;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: url('/assets/images/loading-icon.gif') center no-repeat;
   }
   
   .pdfPresentationMode:-webkit-full-screen .pdfViewer .page {

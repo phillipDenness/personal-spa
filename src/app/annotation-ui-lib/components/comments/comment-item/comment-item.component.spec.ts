@@ -5,7 +5,7 @@ import { Subject, of } from 'rxjs';
 import { CommentItemComponent } from './comment-item.component';
 import { AnnotationStoreService } from '../../../data/annotation-store.service';
 import { Comment, Annotation } from '../../../data/annotation-set.model';
-import { Renderer2, Type } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Renderer2, Type } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 
 class MockAnnotationStoreService {
@@ -19,8 +19,9 @@ class MockAnnotationStoreService {
   editComment(comment) {
     this.comment = comment;
   }
-
-  deleteComment(commentId) {}
+  setAnnotationFocusSubject() {}
+  getCommentFocusSubject() {}
+  deleteComment() {}
   setCommentBtnSubject() {}
   getCommentBtnSubject(): Subject<string> {
     return this.commentBtnSubject;
@@ -31,13 +32,14 @@ describe('CommentItemComponent', () => {
   let component: CommentItemComponent;
   let fixture: ComponentFixture<CommentItemComponent>;
   let commentForm: any;
+  let renderer2: Renderer2;
 
   const comment = new Comment(
     '71d5914c-163c-4e91-9788-101e1fd1c171',
     'f7dd4059-b384-4e57-ac91-aac541b8f8ff',
-    '96866',
+    '96866', {forename: 'test', surname: 'test', email: 'test@test'},
     new Date(),
-    '96866',
+    '96866', {forename: 'test', surname: 'test', email: 'test@test'},
     new Date(),
     'A new comment'
     );
@@ -46,8 +48,8 @@ describe('CommentItemComponent', () => {
     'ca68f5b0-a9dd-4f8e-95b8-3cad024c54be',
     '563ba4f8-47af-4652-961a-1274059269c6',
     '96866',
-    new Date(),
-    '96866',
+    new Date(), {forename: 'test', surname: 'test', email: 'test@test'},
+    '96866', {forename: 'test', surname: 'test', email: 'test@test'},
     new Date(),
     '3b82dea5-cb7f-46bc-95f0-198b41a29bde',
     1,
@@ -58,7 +60,11 @@ describe('CommentItemComponent', () => {
   );
 
   const mockAnnotationStoreService = new MockAnnotationStoreService();
-  let renderer2: Renderer2;
+  const mockComment = new Comment(
+    'cfe6bdad-8fc5-4240-adfc-d583bdaee47a',
+    '22a3bde9-18d6-46b2-982b-36e0a631ea4b',
+    '111111', null, new Date(), null, null, null,
+    'comment content');
 
   beforeEach(async(() => {
     commentForm = <NgForm>{
@@ -70,6 +76,7 @@ describe('CommentItemComponent', () => {
     };
     TestBed.configureTestingModule({
       declarations: [ CommentItemComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: AnnotationStoreService, useFactory: () => mockAnnotationStoreService },
         Renderer2
@@ -81,15 +88,15 @@ describe('CommentItemComponent', () => {
 
   beforeEach(async(() => {
     fixture = TestBed.createComponent(CommentItemComponent);
-    renderer2 = fixture.componentRef.injector.get<Renderer2>(Renderer2 as Type<Renderer2>);
-    const mockDocument = fixture.componentRef.injector.get(DOCUMENT); 
+    const mockDocument = fixture.componentRef.injector.get(DOCUMENT);
     spyOn(mockDocument, 'querySelectorAll').and
       .returnValue([document.createElement('div')]);
     component = fixture.componentInstance;
+    spyOn(mockAnnotationStoreService, 'getCommentFocusSubject').and
+      .returnValue(of({annotation: annotation, showButton: false}));
 
     component.comment = comment;
     component.annotation = annotation;
-    component.selectedAnnotationId = annotation.id;
 
     fixture.detectChanges();
   }));
@@ -101,8 +108,8 @@ describe('CommentItemComponent', () => {
   describe('onInit', () => {
     it('should hideTheButtonsAndUnfocus', () => {
       component.ngOnInit();
-      expect(component.focused).toBeFalsy();
-      expect(component.hideButton).toBeTruthy();
+      expect(component['focused']).toBeFalsy();
+      expect(component['hideButton']).toBeTruthy();
     });
 
     it('should subscribe to handle comment btn subject', () => {
@@ -116,28 +123,14 @@ describe('CommentItemComponent', () => {
       spyOn(mockAnnotationStoreService, 'getCommentBtnSubject').and
         .returnValue(of(component.comment.id));
       component.ngOnInit();
-      expect(component.hideButton).toBeFalsy();
+      expect(component['hideButton']).toBeFalsy();
     });
 
     it('should call handleShowBtn if subject does not match', () => {
       spyOn(mockAnnotationStoreService, 'getCommentBtnSubject').and
         .returnValue(of('some other id'));
       component.ngOnInit();
-      expect(component.hideButton).toBeTruthy();
-    });
-  });
-
-  describe('handleShowBtn', () => {
-    it('should set hideButton to false', () => {
-      component.handleShowBtn();
-      expect(component.hideButton).toBeFalsy();
-    });
-  });
-
-  describe('handleHideBtn', () => {
-    it('should set hideButton to true', () => {
-      component.handleHideBtn();
-      expect(component.hideButton).toBeTruthy();
+      expect(component['hideButton']).toBeTruthy();
     });
   });
 
@@ -150,26 +143,27 @@ describe('CommentItemComponent', () => {
     });
   });
 
+  describe('handleShowBtn', () => {
+    it('should set hideButton to false', () => {
+      component.handleShowBtn();
+      expect(component['hideButton']).toBeFalsy();
+    });
+  });
+
+  describe('handleHideBtn', () => {
+    it('should set hideButton to true', () => {
+      component.handleHideBtn();
+      expect(component['hideButton']).toBeTruthy();
+    });
+  });
+
   describe('handleCommentClick', () => {
     it('should update the commentBtn subject with its own comment ID', () => {
       spyOn(mockAnnotationStoreService, 'setCommentBtnSubject');
-      component.handleCommentClick(null);
+      spyOn(mockAnnotationStoreService, 'setAnnotationFocusSubject');
+      component.handleCommentClick();
       expect(mockAnnotationStoreService.setCommentBtnSubject)
         .toHaveBeenCalledWith(component.comment.id);
-    });
-
-    it('should call renderer to add the comment selected class', () => {
-      spyOn(renderer2, 'addClass');
-
-      component.handleCommentClick(null);
-      expect(renderer2.addClass).toHaveBeenCalled();
-    });
-
-    it('should emit the annotationId', () => {
-      spyOn(component.commentSelected, 'emit');
-      component.handleCommentClick(null);
-      expect(component.commentSelected.emit)
-        .toHaveBeenCalledWith(component.comment.annotationId);
     });
   });
 
@@ -177,52 +171,70 @@ describe('CommentItemComponent', () => {
     it('should convert form to comment', async(() => {
       const actual = component.convertFormToComment(commentForm);
       expect(actual instanceof Comment).toBeTruthy();
-      expect(actual.id).toEqual(commentForm.value.commentId);
-      expect(actual.annotationId).toEqual(commentForm.value.annotationId);
+      expect(actual.id).toEqual(comment.id);
+      expect(actual.annotationId).toEqual(comment.annotationId);
       expect(actual.content).toEqual(commentForm.value.content);
     }));
   });
 
-  describe('removeCommentSelectedStyle', () => {
-    it('should iterate all other comment items', () => {
-      spyOn(renderer2, 'removeClass');
-      component.removeCommentSelectedStyle();
-
-      expect(renderer2.removeClass).toHaveBeenCalled();
-    });
-  });
 
   describe('onSubmit', () => {
     it('should add current date to comment onSubmit', async(() => {
       component.commentItem = commentForm;
       component.onSubmit();
-      const expectedDate = new Date();
-      expect(mockAnnotationStoreService.comment.lastModifiedDate).toBeTruthy();
-      expect(mockAnnotationStoreService.comment.lastModifiedDate.getDate())
-        .toBe(expectedDate.getDate());
-    }));
-  });
-
-  describe('onFocus', () => {
-    it('should focus the component when onFocus is called', async(() => {
-      component.onFocus();
-      expect(component.focused).toBeTruthy();
+      expect(mockAnnotationStoreService.comment.createdDate).toBeTruthy();
     }));
   });
 
   describe('onBlur', () => {
     it('should unfocus the component when onBlur is called', async(() => {
       component.onBlur();
-      expect(component.focused).toBeFalsy();
-      expect(component.hideButton).toBeTruthy();
+      expect(component['focused']).toBeFalsy();
+      expect(component['hideButton']).toBeTruthy();
     }));
   });
 
   describe('handleDeleteComment', () => {
     it('should call delete comment when handleDeleteComment is called', async(() => {
       spyOn(mockAnnotationStoreService, 'deleteComment');
-      component.handleDeleteComment(null, '4c2a1799-d67c-45be-ba10-8ad801a9ef4f');
+      component.handleDeleteComment();
       expect(mockAnnotationStoreService.deleteComment).toHaveBeenCalled();
+    }));
+  });
+
+  describe('isModified', () => {
+    it('should return false if createdDate is null', async(() => {
+      mockComment.createdDate = null;
+      component.comment = mockComment;
+      const modified = component.isModified();
+      expect(modified).toBeFalsy();
+    }));
+
+    it('should return false if lastModifiedBy is null', async(() => {
+      mockComment.createdDate = new Date();
+      mockComment.lastModifiedBy = null;
+      component.comment = mockComment;
+      const modified = component.isModified();
+      expect(modified).toBeFalsy();
+    }));
+
+    it('should return false if lastModifiedDate and createdDate are the same', async(() => {
+      const myDate = new Date();
+      mockComment.createdDate = myDate;
+      mockComment.lastModifiedDate = myDate;
+      mockComment.lastModifiedBy = 'anId';
+      component.comment = mockComment;
+      const modified = component.isModified();
+      expect(modified).toBeFalsy();
+    }));
+
+    it('should return true if above do not return false', async(() => {
+      mockComment.createdDate =  new Date();
+      mockComment.lastModifiedDate =  new Date();
+      mockComment.lastModifiedBy = 'anId';
+      component.comment = mockComment;
+      const modified = component.isModified();
+      expect(modified).toBeTruthy();
     }));
   });
 });

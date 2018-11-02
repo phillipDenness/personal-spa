@@ -1,52 +1,29 @@
-<form *ngIf="selectedAnnotationId == annotation.id || !selectedAnnotationId" 
+<form 
+  [style.top.px]="commentPosTop"
+  [style.z-index]="zIndex"
   class="comment-list-item" 
   (ngSubmit)="onSubmit()" #commentItem="ngForm" 
-  (click)="handleCommentClick($event)">
-  <div class="comment-meta">
-    <label class="comment-author">{{comment.createdBy}}</label>
-    <br>
-    <label class="comment-date" ng-controller="datCtrl">{{ comment.createdDate | date: 'd/M/y HH:mm' }}</label>
-    <div *ngIf="comment.lastModifiedDate != null && comment.createdDate != comment.lastModifiedDate">
-        <label>Last modified By: {{ comment.lastModifiedBy }}</label>
-      <label class="comment-date" ng-controller="datCtrl"><br>{{ comment.lastModifiedDate | date: 'd/M/y HH:mm' }}</label>
-    </div>
+  (click)="handleCommentClick()">
+  <div class="jui-comment__header">
+    <span *ngIf="comment.createdByDetails"><p class="h6">anonymous</p></span>
+    <time ng-controller="datCtrl"><p class="h6">{{ comment.createdDate | date: 'd MMMM y h:mm a' }}<p class="h6"></p></time>
   </div>
 
-  <input 
-    type="hidden" 
-    id="createdBy" 
-    required
-    [ngModel]="comment.createdBy" name="createdBy"
-    value={{comment.createdBy}}>
-
   <textarea 
-    (focus)="onFocus()"
+    #commentArea
     (blur)="onBlur()"
     type="text" 
-    class="form-control" id="comment"
+    [class.mimic-focus]="focused"
+    class="form-control mimic-focus"
     required
-    #commentTextField
     [ngModel]="comment.content" name="content"
     value="comment.content"></textarea>
 
-  <input 
-    type="hidden" 
-    id="annotationId"
-    required
-    [ngModel]="comment.annotationId" name="annotationId"
-    >
-
-  <input 
-    type="hidden" 
-    id="commentId"
-    required
-    [ngModel]="comment.id" name="commentId">
-
-    <div [hidden]="hideButton" class="comment-btns">
-        <button type="submit" class="govuk-button hmcts-page-heading__button" role="button">Comment</button>
+    <div [hidden]="hideButton">
+        <button type="submit" class="btn btn-outline-primary" role="button">Add</button>
         <button 
-        class="govuk-button hmcts-page-heading__button hmcts-button--secondary" 
-        role="button"
-        (click)="handleDeleteComment($event, comment.id)">Delete</button>
+          class="btn btn-outline-danger" 
+          role="button"
+          (click)="handleDeleteComment()">Delete</button>
     </div>
 </form>

@@ -4,64 +4,48 @@
 
   .toolbar {
     position: absolute;
-    background-color: white;
-    border: black 1px solid;
+    // background-color: white;
+    border: 0;
     height: 52px;
-    width: 216px;
+    width: 350px;
     margin: 0px auto;
-    text-shadow: 1px 1px 0 #fff;
-    z-index: 100;
-    border: 1px solid #c1c1c1;
-    box-shadow: 0px 2px #c1c1c1;
+    // text-shadow: 1px 1px 0 #fff;
+    z-index: 1;
+    // border: 1px solid #c1c1c1;
+    // box-shadow: 0px 2px #c1c1c1;
   }
 
-  .toolbar .spacer {
-    display: inline-block;
-    border-left: 1px solid #c1c1c1;
-    height: 34px;
-    margin: 0 5px -11px;
-  }
+  .toolbar button span { 
+    margin-left: 15px; 
+  } 
 
   .toolbar button {
     padding: 0px;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top: 2.5%;
-    // margin-bottom: 2.5%;
-    width: 90px;
+    // margin-left: 2.5%;
+    // margin-right: 2.5%;
+    margin-top: 6px;
     height: 40px;
-    border: 0;
+    // border: 0;
   }
-
-  .toolbar button:hover {
-    border: 1px solid black;
-  }
-
 
   .contextual-btn {
-    background: white;
+    font-size: 16px; 
+    // background: white;     
+    background-repeat: no-repeat; 
+    background-size: 20px 20px; 
+    background-position: 5px 50%; 
   }
 
-  .arrow-down {
-    margin: 0 auto;
-    margin-top: 7px;
-    width: 0;
-    height: 0;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    border-top: 12px solid #c1c1c1;
-  }
-
-  .inner-triangle {
-    position: relative;
-    top: -12px;
-    left: -10px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid white;
-  }
+  .rightButton { 
+    width: 114px; 
+    background-image: url(/assets/images/annotate-comment.svg); 
+  } 
+ 
+  .leftButton {
+    margin-right: 10px;
+    background-image: url(/assets/images/em-annotate-highlight.svg); 
+    width: 180px; 
+  } 
 
 
 ////////////////////////////////////////
