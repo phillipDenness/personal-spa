@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgZone, OnInit } from '@angular/core';
-import { MapsAPILoader, AgmMap } from '@agm/core';
+import { MapsAPILoader, AgmMap, MarkerManager, CircleManager } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core/services';
 
 declare var google: any;
@@ -26,7 +26,8 @@ interface Location {
 @Component({
   selector: 'app-job-map',
   templateUrl: './job-map.component.html',
-  styleUrls: ['./job-map.component.css']
+  styleUrls: ['./job-map.component.css'],
+  providers: [MarkerManager, CircleManager]
 })
 export class JobMapComponent implements OnInit {
 
@@ -81,7 +82,7 @@ export class JobMapComponent implements OnInit {
       if (status === google.maps.GeocoderStatus.OK) {
         for (let i = 0; i < results[0].address_components.length; i++) {
           const types = results[0].address_components[i].types;
- 
+
           if (types.indexOf('locality') !== -1) {
             this.location.address_level_2 = results[0].address_components[i].long_name;
           }
@@ -110,7 +111,7 @@ export class JobMapComponent implements OnInit {
     });
   }
 
-  markerDragEnd(m: any, $event: any) {
+  markerDragEnd(m: any) {
     this.location.marker.lat = m.coords.lat;
     this.location.marker.lng = m.coords.lng;
     this.findAddressByCoordinates();
@@ -124,14 +125,14 @@ export class JobMapComponent implements OnInit {
       }
     }, (results, status) => {
       this.decomposeAddressComponents(results);
-    })
+    });
   }
 
   decomposeAddressComponents(addressArray) {
     if (addressArray.length === 0) {return false; }
     const address = addressArray[0].address_components;
 
-    for(let element of address) {
+    for (let element of address) {
       if (element.length === 0 && !element['types']) {continue; }
 
       if (element['types'].indexOf('street_number') > -1) {
