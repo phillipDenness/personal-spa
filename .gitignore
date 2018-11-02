@@ -43,3 +43,7 @@ Thumbs.db
 \.firebase/hosting\.cHVibGlj\.cache
 
 *.cache
+
+src/environments/
+
+\.vscode/settings\.json

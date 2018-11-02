@@ -10,8 +10,16 @@ import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AboutCardsComponent } from './about-cards/about-cards.component';
-import { ResourcesComponent } from './resources/resources.component';
 import { AboutCardComponent } from './about-card/about-card.component';
+
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { HmctsAnnotationUiModule } from './annotation-ui-lib/hmcts-annotation-ui.module';
+import { JobMapComponent } from './job-map/job-map.component';
+import * as firebase from 'firebase';
+import { APIResolver } from './pdf-resolver';
+import { ProjectsComponent } from './projects/projects.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/about', pathMatch: 'full'},
@@ -27,11 +35,13 @@ const appRoutes: Routes = [
       }
     ]
   },
-  { path: 'projects', component: ResourcesComponent},
-  { path: 'skills', component: ResourcesComponent},
+  { path: 'projects', component: ProjectsComponent, resolve: { items: APIResolver }},
   { path: '**', component: PageNotFoundComponent }
 ];
 
+
+
+firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,19 +49,24 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     NavBarComponent,
     AboutCardsComponent,
-    ResourcesComponent,
-    AboutCardComponent
+    ProjectsComponent,
+    AboutCardComponent,
+    JobMapComponent
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({apiKey: environment.googleApi.apiKey}),
+    FormsModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HmctsAnnotationUiModule
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper, APIResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
