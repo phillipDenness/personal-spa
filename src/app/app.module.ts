@@ -3,42 +3,41 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
-
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { AboutCardsComponent } from './about-cards/about-cards.component';
-
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
-import { HmctsAnnotationUiModule } from './annotation-ui-lib/hmcts-annotation-ui.module';
-import { JobMapComponent } from './job-map/job-map.component';
 import * as firebase from 'firebase';
-import { APIResolver } from './pdf-resolver';
-import { ProjectsComponent } from './projects/projects.component';
-import { ProfileComponent } from './profile/profile.component';
-import { FooterComponent } from './footer/footer.component';
+
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
+import { NavBarComponent } from './common/nav-bar/nav-bar.component';
+import { WelcomeCardsComponent } from './welcome/welcome-cards/welcome-cards.component';
+import { HmctsAnnotationUiModule } from './pdf//annotation-ui-lib/hmcts-annotation-ui.module';
+import { JobMapComponent } from './job-map/job-map.component';
+import { PdfResolver } from './pdf/pdf-resolver';
+import { MyStoryComponent } from './my-story/my-story.component';
+import { FooterComponent } from './common/footer/footer.component';
 import { GumtreeProjectComponent } from './gumtree-project/gumtree-project.component';
+import { PdfComponent } from './pdf/pdf.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/about', pathMatch: 'full'},
-  { path: 'about', component: AboutComponent,
+  { path: '', redirectTo: '/welcome', pathMatch: 'full'},
+  { path: 'welcome', component: WelcomeComponent,
     children: [
       {
         path: '',
-        component: AboutCardsComponent
+        component: WelcomeCardsComponent
       },
       {
-        path: 'profile',
-        component: ProfileComponent
+        path: 'my-story',
+        component: MyStoryComponent
       },
     ]
   },
-  { path: 'pdf', component: ProjectsComponent, resolve: { items: APIResolver }},
-  { path: 'gumtree', component: GumtreeProjectComponent },
+  { path: 'projects/pdf', component: PdfComponent, resolve: { items: PdfResolver }},
+  { path: 'projects/gumtree', component: GumtreeProjectComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -46,15 +45,15 @@ firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent,
+    WelcomeComponent,
     PageNotFoundComponent,
     NavBarComponent,
-    AboutCardsComponent,
-    ProjectsComponent,
+    WelcomeCardsComponent,
     JobMapComponent,
-    ProfileComponent,
+    MyStoryComponent,
     FooterComponent,
-    GumtreeProjectComponent
+    GumtreeProjectComponent,
+    PdfComponent
   ],
   imports: [
     BrowserModule,
@@ -63,13 +62,13 @@ firebase.initializeApp(environment.firebase);
     NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     HmctsAnnotationUiModule
   ],
-  providers: [GoogleMapsAPIWrapper, APIResolver],
+  providers: [GoogleMapsAPIWrapper, PdfResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

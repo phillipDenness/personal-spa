@@ -5,7 +5,7 @@ import { from, Observable } from 'rxjs';
 import * as firebase from 'firebase';
 
 @Injectable()
-export class APIResolver implements Resolve<any> {
+export class PdfResolver implements Resolve<any> {
   constructor() {}
 
   resolve(): Observable<any> {
