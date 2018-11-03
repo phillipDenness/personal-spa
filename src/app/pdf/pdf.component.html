@@ -1,16 +1,28 @@
 
   <div class="jumbotron">
     <h1>PDF annotation project - Backend still in development</h1>
-    <p>This is an opensource angular library I developed for annotating PDFs. Feel free to leave some comments on my CV :). 
-      Comments and annotations are stored in cloud firestore database.</p>
+    <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <p>This is an opensource angular library I developed for annotating PDFs. Feel free to leave some comments on my CV
+        or upload your own PDF document.</p>
+      <p>PDF documents, comments and annotations are stored in cloud firestore database.</p>
+    </div>
+      <!-- <a #download><button (click)="downloadFile()">Download CV</button></a> -->
+    <div class="col-xs-12 col-sm-4">
+      <h6>Select a file for upload:</h6>
+      <input class="btn-group" type="file" (change)="filePicker($event)" accept=".pdf" />
+      <button #uploadBtn disabled class="btn btn-success" (click)="upload()">Annotate PDF</button>
+    </div>
   </div>
-    
+  </div>
     <app-annotation-pdf-viewer
+      #annotationViewer
       [annotate]="true"
-      [dmDocumentId]="'string'"
+      [dmDocumentId]="dmDocumentId"
       [outputDmDocumentId]="'string'"
       [url]="url"
       [annotationSet]="annotationSet"
       [baseUrl]=""></app-annotation-pdf-viewer>
+      
   
   

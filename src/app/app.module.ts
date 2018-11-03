@@ -36,6 +36,12 @@ const appRoutes: Routes = [
       },
     ]
   },
+  {
+    path: 'projects/pdf/:id',
+    component: PdfComponent,
+    runGuardsAndResolvers: 'always',
+    resolve: { items: PdfResolver }
+  },
   { path: 'projects/pdf', component: PdfComponent, resolve: { items: PdfResolver }},
   { path: 'projects/gumtree', component: GumtreeProjectComponent },
   { path: '**', component: PageNotFoundComponent }

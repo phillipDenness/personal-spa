@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Resolve } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { from, Observable } from 'rxjs';
 import * as firebase from 'firebase';
 
@@ -8,10 +8,13 @@ import * as firebase from 'firebase';
 export class PdfResolver implements Resolve<any> {
   constructor() {}
 
-  resolve(): Observable<any> {
-    const cvDownloadUrl = 'Phillip Denness Software Developer CV.pdf';
+  resolve(route: ActivatedRouteSnapshot): Observable<any> {
+    let fileUrl = route.paramMap.get('id');
+    if (!fileUrl) {
+      fileUrl = 'Phillip Denness Software Developer CV.pdf';
+    }
     const storageRef = firebase.app().storage().ref();
 
-    return from(storageRef.child(cvDownloadUrl).getDownloadURL());
+    return from(storageRef.child(fileUrl).getDownloadURL());
   }
 }

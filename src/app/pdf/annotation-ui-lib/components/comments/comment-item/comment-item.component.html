@@ -4,10 +4,7 @@
   class="comment-list-item" 
   (ngSubmit)="onSubmit()" #commentItem="ngForm" 
   (click)="handleCommentClick()">
-  <div class="jui-comment__header">
-    <span *ngIf="comment.createdByDetails"><p class="h6">anonymous</p></span>
-    <time ng-controller="datCtrl"><p class="h6">{{ comment.createdDate | date: 'd MMMM y h:mm a' }}<p class="h6"></p></time>
-  </div>
+  <time ng-controller="datCtrl"><p class="p">{{ comment.createdDate | date: 'd MMMM y h:mm a' }}</p></time>
 
   <textarea 
     #commentArea
