@@ -1,0 +1,18 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 90%" scope="col" *ngFor="let col of columns">
+          {{col.displayText}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let scrape of dataSource.scrapes">
+        <td *ngFor="let col of columns">
+          {{scrape[col.property]}}
+        </td>
+      </tr>
+  </tbody>
+  </table>
+</div>

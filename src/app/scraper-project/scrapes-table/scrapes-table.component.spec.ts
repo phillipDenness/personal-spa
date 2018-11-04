@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GumtreeProjectComponent } from './gumtree-project.component';
+import { ScrapesTableComponent } from './scrapes-table.component';
 
-describe('GumtreeProjectComponent', () => {
-  let component: GumtreeProjectComponent;
-  let fixture: ComponentFixture<GumtreeProjectComponent>;
+describe('ScrapesTableComponent', () => {
+  let component: ScrapesTableComponent;
+  let fixture: ComponentFixture<ScrapesTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GumtreeProjectComponent ]
+      declarations: [ ScrapesTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GumtreeProjectComponent);
+    fixture = TestBed.createComponent(ScrapesTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

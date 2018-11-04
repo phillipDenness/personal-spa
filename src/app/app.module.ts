@@ -19,8 +19,9 @@ import { JobMapComponent } from './job-map/job-map.component';
 import { PdfResolver } from './pdf/pdf-resolver';
 import { MyStoryComponent } from './my-story/my-story.component';
 import { FooterComponent } from './common/footer/footer.component';
-import { GumtreeProjectComponent } from './gumtree-project/gumtree-project.component';
+import { ScraperProjectComponent } from './scraper-project/scraper-project.component';
 import { PdfComponent } from './pdf/pdf.component';
+import { ScrapesTableComponent } from './scraper-project/scrapes-table/scrapes-table.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
     resolve: { items: PdfResolver }
   },
   { path: 'projects/pdf', component: PdfComponent, resolve: { items: PdfResolver }},
-  { path: 'projects/gumtree', component: GumtreeProjectComponent },
+  { path: 'projects/scraper', component: ScraperProjectComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -58,8 +59,9 @@ firebase.initializeApp(environment.firebase);
     JobMapComponent,
     MyStoryComponent,
     FooterComponent,
-    GumtreeProjectComponent,
-    PdfComponent
+    ScraperProjectComponent,
+    PdfComponent,
+    ScrapesTableComponent
   ],
   imports: [
     BrowserModule,
