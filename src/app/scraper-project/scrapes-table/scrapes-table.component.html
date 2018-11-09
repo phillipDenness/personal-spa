@@ -8,9 +8,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let scrape of dataSource.scrapes">
+      <tr *ngIf="scrapes.length === 0">No data found</tr>
+      <tr *ngFor="let scrape of scrapes">
         <td *ngFor="let col of columns">
-          {{scrape[col.property]}}
+          <div *ngIf="scrape[col.property]">
+            {{scrape[col.property].slice(0,100)}}
+          </div>
         </td>
       </tr>
   </tbody>

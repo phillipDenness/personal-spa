@@ -22,6 +22,11 @@ import { FooterComponent } from './common/footer/footer.component';
 import { ScraperProjectComponent } from './scraper-project/scraper-project.component';
 import { PdfComponent } from './pdf/pdf.component';
 import { ScrapesTableComponent } from './scraper-project/scrapes-table/scrapes-table.component';
+import { ScrapeSearchesComponent } from './scraper-project/scrape-searches/scrape-searches.component';
+import { CreateSearchComponent } from './scraper-project/create-search/create-search.component';
+import { ApiHttpService } from './pdf/annotation-ui-lib/data/api-http.service';
+import { ScraperService } from './scraper-project/scraper.service';
+import { ScraperResolver } from './scraper-project/scraper.resolver';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -44,7 +49,19 @@ const appRoutes: Routes = [
     resolve: { items: PdfResolver }
   },
   { path: 'projects/pdf', component: PdfComponent, resolve: { items: PdfResolver }},
-  { path: 'projects/scraper', component: ScraperProjectComponent },
+  { path: 'projects/scraper', component: ScraperProjectComponent,
+    children: [
+        {
+          path: 'create',
+          component: CreateSearchComponent
+        },
+        {
+          path: 'searches',
+          component: ScrapeSearchesComponent,
+          resolve: { items: ScraperResolver }
+        }
+    ]
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -61,7 +78,9 @@ firebase.initializeApp(environment.firebase);
     FooterComponent,
     ScraperProjectComponent,
     PdfComponent,
-    ScrapesTableComponent
+    ScrapesTableComponent,
+    ScrapeSearchesComponent,
+    CreateSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -70,13 +89,19 @@ firebase.initializeApp(environment.firebase);
     NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
+      { enableTracing: false }
     ),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     HmctsAnnotationUiModule
   ],
-  providers: [GoogleMapsAPIWrapper, PdfResolver],
+  providers: [
+    ScraperResolver,
+    ApiHttpService,
+    GoogleMapsAPIWrapper,
+    PdfResolver,
+    ScraperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

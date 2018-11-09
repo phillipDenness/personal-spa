@@ -1,22 +1,26 @@
-import { Component, OnInit, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Scrapes } from '../model/scrapes';
+import { Component, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Scrapes, Scrape } from '../model/scrapes';
+import { ScraperService } from '../scraper.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-scrapes-table',
   templateUrl: './scrapes-table.component.html',
   styleUrls: ['./scrapes-table.component.css']
 })
-export class ScrapesTableComponent implements OnInit, OnChanges {
-  columns: {property: string, displayText: string}[];
-  @Input() dataSource: Scrapes;
+export class ScrapesTableComponent implements OnInit {
+  columns = [{property: 'text', displayText: 'Found text'}, {property: 'tag', displayText: 'Tag'}];
+  scrapes: Scrape[];
+  scrapesSubscription: Subscription;
 
-  constructor() {
+  constructor(private scraperService: ScraperService) {
+    this.scrapes = [new Scrape(null, null)];
   }
 
   ngOnInit() {
-    this.columns = [{property: 'text', displayText: 'Found text'}, {property: 'tag', displayText: 'Tag'}];
-  }
-
-  ngOnChanges(simpleChanges: SimpleChanges) {
+    this.scrapesSubscription = this.scraperService.scrapesSubject
+        .subscribe((scrapes: any) => {
+          this.scrapes = scrapes;
+      });
   }
 }
