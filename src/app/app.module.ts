@@ -27,6 +27,7 @@ import { CreateSearchComponent } from './scraper-project/create-search/create-se
 import { ApiHttpService } from './pdf/annotation-ui-lib/data/api-http.service';
 import { ScraperService } from './scraper-project/scraper.service';
 import { ScraperResolver } from './scraper-project/scraper.resolver';
+import { FloorplanScannerComponent } from './floorplan-scanner/floorplan-scanner.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     runGuardsAndResolvers: 'always',
     resolve: { items: PdfResolver }
   },
+  { path: 'projects/floorplan-scanner', component: FloorplanScannerComponent},
   { path: 'projects/pdf', component: PdfComponent, resolve: { items: PdfResolver }},
   { path: 'projects/scraper', component: ScraperProjectComponent,
     children: [
@@ -80,7 +82,8 @@ firebase.initializeApp(environment.firebase);
     PdfComponent,
     ScrapesTableComponent,
     ScrapeSearchesComponent,
-    CreateSearchComponent
+    CreateSearchComponent,
+    FloorplanScannerComponent
   ],
   imports: [
     BrowserModule,
