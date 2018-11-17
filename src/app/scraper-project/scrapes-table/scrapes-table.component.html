@@ -5,6 +5,9 @@
         <th style="width: 90%" scope="col" *ngFor="let col of columns">
           {{col.displayText}}
         </th>
+        <th style="width: 10%" scope="col">
+          View
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -12,8 +15,14 @@
       <tr *ngFor="let scrape of scrapes">
         <td *ngFor="let col of columns">
           <div *ngIf="scrape[col.property]">
-            {{scrape[col.property].slice(0,100)}}
+            <div *ngIf="col.property !== 'text'"> {{scrape[col.property].slice(0,100)}}</div>
+            <div *ngIf="scrape[showText] && col.property === 'text'">{{scrape.text}}</div>
+            <div *ngIf="!scrape[showText] && col.property === 'text'"> {{scrape[col.property].slice(0,100)}}</div>
           </div>
+        </td>
+        <td>
+          <button *ngIf="!scrape[showText]" (click)="scrape[showText]=true">Expand</button>
+          <button *ngIf="scrape[showText]" (click)="scrape[showText]=false">Collapse</button>
         </td>
       </tr>
   </tbody>

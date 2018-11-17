@@ -1,5 +1,5 @@
-import { Component, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { Scrapes, Scrape } from '../model/scrapes';
+import { Component, OnInit } from '@angular/core';
+import { Scrape } from '../model/scrapes';
 import { ScraperService } from '../scraper.service';
 import { Subscription } from 'rxjs';
 
