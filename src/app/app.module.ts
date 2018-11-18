@@ -28,6 +28,7 @@ import { ApiHttpService } from './pdf/annotation-ui-lib/data/api-http.service';
 import { ScraperService } from './scraper-project/scraper.service';
 import { ScraperResolver } from './scraper-project/scraper.resolver';
 import { FloorplanScannerComponent } from './floorplan-scanner/floorplan-scanner.component';
+import { FloorplanScannerService } from './floorplan-scanner/floorplan-scanner.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -103,7 +104,8 @@ firebase.initializeApp(environment.firebase);
     ApiHttpService,
     GoogleMapsAPIWrapper,
     PdfResolver,
-    ScraperService
+    ScraperService,
+    FloorplanScannerService
   ],
   bootstrap: [AppComponent]
 })

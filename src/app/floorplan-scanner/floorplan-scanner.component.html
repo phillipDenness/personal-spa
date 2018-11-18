@@ -1,2 +1,38 @@
-<h1>Development in-progress</h1>
-<a href="https://github.com/phillipDenness/floorplan-reader">View github for more information</a>
+<div class="jumbotron">
+    <h1>Floorplan scanner</h1>
+    <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <p>This is a Java API which uses Tesseract to read text from images. Currently deployed on Heroku.</p>
+      <p>Uploaded images are stored in cloud firestore.</p>
+      <a href="https://github.com/phillipDenness/floorplan-reader">View github for more information</a>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <h6>Select an image for upload:</h6>
+      <input class="btn-group" type="file" (change)="filePicker($event)" accept="image/*" />
+      <button #uploadBtn disabled class="btn btn-success" (click)="upload()">Upload image</button>
+    </div>
+  </div>
+  </div>
+  {{apiUpdate}}
+  <div *ngIf="floorplanBody" class="table-responsive">
+    <table class="table">
+      <tr>
+        <th style="width: 25%">URL</th>
+        <th>Total Square Area</th>
+        <th style="width: 25%">Extracted Text</th>
+      </tr>
+      <tbody>
+        <tr>
+            <td>
+                <a href="{{floorplanBody.url}}" target="_blank"><img style="width: 100%" src = "{{floorplanBody.url}}"></a>
+            </td>
+            <td>{{floorplanBody.totalSquareArea}}</td>
+            <td> 
+                <button class="btn btn-success" *ngIf="!showText" (click)="showText=true">See all text</button>
+                <div *ngIf="showText">{{floorplanBody.extractedText}}</div>
+                <button class="btn btn-success" *ngIf="showText" (click)="showText=false">Hide</button>
+            </td>
+        </tr>
+      </tbody>
+  </table>
+</div>

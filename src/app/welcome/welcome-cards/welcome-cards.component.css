@@ -18,6 +18,11 @@
     background-image: url(/assets/images/money.svg); 
   }
 
+  .floorplan {
+    background-image: url(/assets/images/floorplan.svg); 
+  }
+
+
   button span { 
     margin-left: 15px; 
   } 

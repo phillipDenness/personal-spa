@@ -32,6 +32,9 @@ export const environment = {
   },
   scraperApi: {
       url: "${process.env.SCRAPERAPIURL}"
+  },
+  floorplanApi: {
+    url: "${process.env.FLOORPLANURL}"
   }
 };
 `;
