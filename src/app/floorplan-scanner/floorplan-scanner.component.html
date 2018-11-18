@@ -13,7 +13,9 @@
     </div>
   </div>
   </div>
-  {{apiUpdate}}
+  <div class="card">
+    <div class="card-body">Information: {{apiUpdate}}</div>
+  </div>
   <div *ngIf="floorplanBody" class="table-responsive">
     <table class="table">
       <tr>
@@ -28,9 +30,9 @@
             </td>
             <td>{{floorplanBody.totalSquareArea}}</td>
             <td> 
-                <button class="btn btn-success" *ngIf="!showText" (click)="showText=true">See all text</button>
+                <button class="btn btn-primary" *ngIf="!showText" (click)="showText=true">See all text</button>
                 <div *ngIf="showText">{{floorplanBody.extractedText}}</div>
-                <button class="btn btn-success" *ngIf="showText" (click)="showText=false">Hide</button>
+                <button class="btn btn-primary" *ngIf="showText" (click)="showText=false">Hide</button>
             </td>
         </tr>
       </tbody>

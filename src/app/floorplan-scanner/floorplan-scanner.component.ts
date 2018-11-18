@@ -32,6 +32,7 @@ export class FloorplanScannerComponent implements OnInit, OnDestroy {
     private floorplanScannerService: FloorplanScannerService) { }
 
   ngOnInit() {
+    this.apiUpdate = 'Invoking default API image';
     this.floorplanResponseSubscription = this.floorplanScannerService.getFloorplanResponseSubject()
       .subscribe((floorplanBody: FloorplanResponse) => {
         if (this.apiUpdate) {
@@ -58,6 +59,7 @@ export class FloorplanScannerComponent implements OnInit, OnDestroy {
   }
 
   upload() {
+    this.apiUpdate = null;
     this.uploadProgress = this.task.percentageChanges();
     this.uploadProgress.subscribe(num => {
       this.apiUpdate = 'Upload progress: ' + num;
