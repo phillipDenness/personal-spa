@@ -1,39 +1,40 @@
-<button routerLink="../searches" type="button" class="gumtree btn btn-success">Previous searches</button>
-<h4>Create new Scrape</h4>
-      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
-        <div class="form-group">
-          <label for="searchName">Name</label>
-          <input type="text" class="form-control" id="searchName" required
-          [(ngModel)]="model.searchName" name="searchName"
-          placeholder="Search name">
-        </div>
+<h4>
+  <button routerLink="../searches" type="button" class="btn btn-primary">Previous searches</button>
+Create search</h4>
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    <div class="form-group">
+      <label for="searchName">Name</label>
+      <input type="text" class="form-control" id="searchName" required
+      [(ngModel)]="model.searchName" name="searchName"
+      placeholder="Search name">
+    </div>
 
-        <div class="form-group">
-          <label for="domain">Domain</label>
-          <input type="text" class="form-control" id="domain" required
-          [(ngModel)]="model.domain" name="domain"
-          placeholder="https://shpock.com">
-        </div>
+    <div class="form-group">
+      <label for="domain">Domain</label>
+      <input type="text" class="form-control" id="domain" required
+      [(ngModel)]="model.domain" name="domain"
+      placeholder="https://shpock.com">
+    </div>
 
-        <label for="tagList">Tags</label>
-        <select class="form-control" id="tagList" required
-          [(ngModel)]="model.tags" name="tags">
-          <option *ngFor="let tags of tagList" [value]="tags">{{tags}}</option>
-        </select>
+    <label for="tagList">Tags</label>
+    <select class="form-control" id="tagList" required
+      [(ngModel)]="model.tags" name="tags">
+      <option *ngFor="let tags of tagList" [value]="tags">{{tags}}</option>
+    </select>
 
-        <div class="form-group">
-          <label for="keywords">Keyword</label>
-          <input type="text" class="form-control" id="keywords" required
-          [(ngModel)]="model.keywords" name="keywords"
-          placeholder="computer, pc, cpu">
-        </div>
+    <div class="form-group">
+      <label for="keywords">Keyword</label>
+      <input type="text" class="form-control" id="keywords" required
+      [(ngModel)]="model.keywords" name="keywords"
+      placeholder="computer, pc, cpu">
+    </div>
 
-        <div class="form-group">
-          <label for="blockwords">Blockword</label>
-          <input type="text" class="form-control" id="blockwords"
-          [(ngModel)]="model.blockwords" name="blockwords"
-          placeholder="dual core, pentium">
-        </div>
+    <div class="form-group">
+      <label for="blockwords">Blockword</label>
+      <input type="text" class="form-control" id="blockwords"
+      [(ngModel)]="model.blockwords" name="blockwords"
+      placeholder="dual core, pentium">
+    </div>
 
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>

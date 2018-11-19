@@ -1,3 +1,11 @@
+    <!-- <ul class="list-group">
+      <li class="list-group-item">Search name={{searchInfo.searchName}}</li>
+      <li class="list-group-item">Domain={{searchInfo.domain}}</li>
+      <li class="list-group-item">Tags={{searchInfo.tags}}</li>
+      <li class="list-group-item">Keywords={{searchInfo.keywords}}</li>
+      <li class="list-group-item">Blockwords={{searchInfo.blockwords}}</li>
+    </ul> -->
+
 <div class="table-responsive">
   <table class="table">
     <thead>
@@ -21,8 +29,8 @@
           </div>
         </td>
         <td>
-          <button *ngIf="!scrape[showText]" (click)="scrape[showText]=true">Expand</button>
-          <button *ngIf="scrape[showText]" (click)="scrape[showText]=false">Collapse</button>
+          <button class="btn btn-primary" *ngIf="!scrape[showText]" (click)="scrape[showText]=true">Expand</button>
+          <button class="btn btn-primary" *ngIf="scrape[showText]" (click)="scrape[showText]=false">Collapse</button>
         </td>
       </tr>
   </tbody>

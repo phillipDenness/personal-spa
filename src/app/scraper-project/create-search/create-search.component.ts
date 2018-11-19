@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchTermsForm, SearchTerms } from '../model/search-terms';
 import { Scrapes } from '../model/scrapes';
 import { ScraperService } from '../scraper.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-search',

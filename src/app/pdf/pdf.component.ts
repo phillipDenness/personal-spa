@@ -24,6 +24,8 @@ export class PdfComponent implements OnInit {
   resolverSubscription: Subscription;
   routerSubscription: Subscription;
 
+  apiUpdate: string;
+
   @ViewChild('uploadBtn') uploadBtn: ElementRef;
 
   constructor(private actr: ActivatedRoute,
@@ -33,6 +35,7 @@ export class PdfComponent implements OnInit {
               private renderer: Renderer2,
               private zone: NgZone) {
 
+    this.apiUpdate = 'Rendering PDF';
     this.resolverSubscription = this.actr.data.subscribe(data => {
       this.dmDocumentId = data.items.substring(
         data.items.lastIndexOf('/o/') + 3,
@@ -78,6 +81,9 @@ export class PdfComponent implements OnInit {
 
   upload() {
     this.uploadProgress = this.task.percentageChanges();
+    this.uploadProgress.subscribe(num => {
+      this.apiUpdate = 'Upload progress: ' + num;
+    });
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.downloadURL = this.ref.getDownloadURL();

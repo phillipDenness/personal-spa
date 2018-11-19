@@ -1,5 +1,6 @@
-<button routerLink="../create" type="button" class="gumtree btn btn-success">Create search</button>
-<h4>Previous Scrapes</h4>
+<h4>
+  <button routerLink="../create" type="button" class="btn btn-primary">Create search</button>
+Searches</h4>
 <div class="table-responsive">
     <table class="table">
       <tr>
@@ -10,8 +11,8 @@
       </tr>
       <tbody>
         <tr *ngFor="let searchTerms of datasource">
-          <th >
-              <button class="gumtree btn btn-light" (click)="onScrapeClick(searchTerms)">Search</button>
+          <th>
+              <button class="btn btn-light" (click)="onScrapeClick(searchTerms)">Search</button>
           </th>
           <td *ngFor="let col of columns">
             {{searchTerms[col]}}

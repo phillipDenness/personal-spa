@@ -41,7 +41,8 @@ export class FloorplanScannerComponent implements OnInit, OnDestroy {
         this.floorplanBody = floorplanBody;
         this.changeRef.detectChanges();
     });
-    this.floorplanScannerService.createFloorplan('https://firebasestorage.googleapis.com/v0/b/personalspa-221021.appspot.com/o/floorplan.jpg?alt=media&token=0baeab83-efac-4fbf-aaa8-c8451755c16d');
+    // tslint:disable-next-line:max-line-length
+    this.floorplanScannerService.createFloorplan('https://firebasestorage.googleapis.com/v0/b/personalspa-221021.appspot.com/o/floorplan.gif?alt=media&token=e4486236-0e2e-490a-bec4-e437377aec30');
   }
 
   ngOnDestroy() {
