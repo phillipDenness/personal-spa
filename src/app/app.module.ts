@@ -29,6 +29,7 @@ import { ScraperService } from './scraper-project/scraper.service';
 import { ScraperResolver } from './scraper-project/scraper.resolver';
 import { FloorplanScannerComponent } from './floorplan-scanner/floorplan-scanner.component';
 import { FloorplanScannerService } from './floorplan-scanner/floorplan-scanner.service';
+import { FundPriceComponent } from './fund-price/fund-price.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
         }
     ]
   },
+  { path: 'projects/fund-price', component: FundPriceComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -84,7 +86,8 @@ firebase.initializeApp(environment.firebase);
     ScrapesTableComponent,
     ScrapeSearchesComponent,
     CreateSearchComponent,
-    FloorplanScannerComponent
+    FloorplanScannerComponent,
+    FundPriceComponent
   ],
   imports: [
     BrowserModule,
