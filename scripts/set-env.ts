@@ -35,6 +35,9 @@ export const environment = {
   },
   floorplanApi: {
     url: "${process.env.FLOORPLANURL}"
+  },
+  fundPriceApi: {
+    url: "${process.env.FUNDPRICEURL}"
   }
 };
 `;
