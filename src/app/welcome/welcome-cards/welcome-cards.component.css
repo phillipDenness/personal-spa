@@ -22,6 +22,9 @@
     background-image: url(/assets/images/floorplan.svg); 
   }
 
+  .fundprice {
+    background-image: url(/assets/images/fund-price.svg); 
+  }
 
   button span { 
     margin-left: 15px; 

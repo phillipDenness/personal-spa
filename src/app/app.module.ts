@@ -30,6 +30,7 @@ import { ScraperResolver } from './scraper-project/scraper.resolver';
 import { FloorplanScannerComponent } from './floorplan-scanner/floorplan-scanner.component';
 import { FloorplanScannerService } from './floorplan-scanner/floorplan-scanner.service';
 import { FundPriceComponent } from './fund-price/fund-price.component';
+import { FundPriceService } from './fund-price/fund-price.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -108,7 +109,8 @@ firebase.initializeApp(environment.firebase);
     GoogleMapsAPIWrapper,
     PdfResolver,
     ScraperService,
-    FloorplanScannerService
+    FloorplanScannerService,
+    FundPriceService
   ],
   bootstrap: [AppComponent]
 })

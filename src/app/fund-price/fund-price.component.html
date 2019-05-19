@@ -1,3 +1,20 @@
-<p>
-  fund-price works!
-</p>
+<h1>Fund price project</h1>
+  
+
+<div class="card">
+  <div class="card-body">Api will use TrustNet API to retrieve a todays prices for a selected fund. 
+    <p>See the repository here - <a href='https://github.com/phillipDenness/historic-scraper' target='_blank'>GitHub</a></p>
+  Fund price: {{fundPriceResponse}}<br>
+    Fund Url: <a target="_blank" href={{selectedFund.fundLink}}>{{selectedFund.fundLink}}</a>
+  </div>
+</div>
+<div class="row">
+ <div class="class=col-xs-12 col-sm-8">
+    <select class="browser-default custom-select" 
+    [(ngModel)]="selectedFund">
+      <option *ngFor="let fundName of fundNames" [ngValue]="fundName">{{fundName.name}}</option>
+    </select>
+  </div>
+
+  <button class="btn btn-light" (click)="onPriceClick()">Get price</button>
+</div>
