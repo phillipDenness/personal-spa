@@ -31,6 +31,8 @@ import { FloorplanScannerComponent } from './floorplan-scanner/floorplan-scanner
 import { FloorplanScannerService } from './floorplan-scanner/floorplan-scanner.service';
 import { FundPriceComponent } from './fund-price/fund-price.component';
 import { FundPriceService } from './fund-price/fund-price.service';
+import { HistoricPriceComponent } from './fund-price/historic-price/historic-price.component';
+
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -88,7 +90,8 @@ firebase.initializeApp(environment.firebase);
     ScrapeSearchesComponent,
     CreateSearchComponent,
     FloorplanScannerComponent,
-    FundPriceComponent
+    FundPriceComponent,
+    HistoricPriceComponent
   ],
   imports: [
     BrowserModule,
