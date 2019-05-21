@@ -1,30 +1,30 @@
-<div class="row">
-    <div class="class=col-xs-12 col-sm-8">
-        <div class="form-group">
-            <div class='input-group date'>
-            <input (click)="d.toggle()"
-                    placeholder="{{valuedate | date: 'yyyy-MM-dd'}}" 
-                    type="text" 
-                    ngbDatepicker 
-                    #d="ngbDatepicker"
-                    [(ngModel)]="startDate"
-                    [minDate]="(minDate)"
-                    [maxDate]="(todaysDate)"
-                    class="browser-default"
-                    class="form-control"
-                    />
-
-            <input (click)="e.toggle()"
-                    placeholder="{{lastWeekDate | date: 'yyyy-MM-dd'}}" 
-                    type="text" 
-                    ngbDatepicker #e="ngbDatepicker" 
-                    (dateSelect)="onEndDateSelect($event)"
-                    [minDate]="(minDate)"
-                    [maxDate]="(startDate)"
-                    class="form-control"
+<h3>Historic Prices</h3>
+<div class="form-group">
+    <label>From Date</label>
+    <div class='input-group'>
+    <input (click)="d.toggle()"
+            placeholder="{{lastWeekDate | date: 'yyyy-MM-dd'}}" 
+            type="text" 
+            ngbDatepicker 
+            #d="ngbDatepicker"
+            [(ngModel)]="startDate"
+            [minDate]="(minDate)"
+            [maxDate]="(maxDate)"
+            class="browser-default"
+            class="form-control"
             />
-            </div>
-        </div>
     </div>
-    <button class="btn btn-light" (click)="e.toggle()">Generate CSV</button>
+    <label>To Date</label>
+    <div class='input-group'>
+    <input (click)="e.toggle()"
+            placeholder="{{yesterdaysDate | date: 'yyyy-MM-dd'}}" 
+            type="text" 
+            ngbDatepicker #e="ngbDatepicker" 
+            [(ngModel)]="endDate"
+            [minDate]="(startDate)"
+            [maxDate]="(maxDate)"
+            class="form-control"
+    />
 </div>
+    </div>
+<button class="btn btn-light" (click)="onClick()">Generate CSV</button>

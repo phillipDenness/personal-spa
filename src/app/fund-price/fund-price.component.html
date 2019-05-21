@@ -1,24 +1,33 @@
-<h1>Fund price project</h1>
-  
-
-<div class="card">
-  <div class="card-body">
-    <p>This is a demo for one of the APIs used to collect data on pension funds. Google Sheet formulas interpret the data of approximately 100 funds and highlight good investments.</p>
-    <p>Clicking 'Get price' will fetch the current price for the selected fund. </p>
-    <p>See the repository here - <a href='https://github.com/phillipDenness/historic-scraper' target='_blank'>GitHub</a></p>
-  Fund price: {{fundPriceResponse}}<br>
-    Fund Url: <a target="_blank" href={{selectedFund.fundLink}}>{{selectedFund.fundLink}}</a>
-  </div>
+<div class="jumbotron">
+    <h1>Fund price project</h1>
+      <div class="row">
+        <div class="col-xs-12 col-sm-8">
+        <p>This is a demo for one of the APIs used to collect data on pension funds. Google Sheet formulas interpret the data of approximately 100 funds and highlight good investments.</p>
+        <p>You may get the current price for the selected fund or download a CSV container historic data.</p>
+        <p>See the repository here - <a href='https://github.com/phillipDenness/historic-scraper' target='_blank'>GitHub</a></p>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <h6>Here is the data:</h6>
+            Fund price: {{fundPriceResponse}}<br>
+            Historic data: <br>
+            Fund Url: <a target="_blank" href={{selectedFund.fundLink}}>{{selectedFund.fundLink}}</a>
+        </div>
+      </div>
 </div>
 <div class="row">
- <div class="class=col-xs-12 col-sm-8">
-    <select class="browser-default custom-select" 
-    [(ngModel)]="selectedFund">
-      <option *ngFor="let fundName of fundNames" [ngValue]="fundName">{{fundName.name}}</option>
-    </select>
-  </div>
+  <div class="class=col-xs-12 col-sm-8">
+      <h3>Select Fund</h3>
+      <div class="form-group">
+        <select class="browser-default custom-select" 
+        [(ngModel)]="selectedFund">
+          <option *ngFor="let fundName of fundNames" [ngValue]="fundName">{{fundName.name}}</option>
+        </select>
+      </div>
+      <button class="btn btn-light" (click)="onPriceClick()">Get todays price</button>
+    </div>
 
-  <button class="btn btn-light" (click)="onPriceClick()">Get price</button>
+  <div class="col-xs-12 col-sm-4">    
+    <app-historic-price></app-historic-price>
+  </div>
 </div>
 
-<app-historic-price></app-historic-price>

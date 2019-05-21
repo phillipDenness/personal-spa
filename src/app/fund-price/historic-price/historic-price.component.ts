@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-historic-price',
@@ -7,12 +7,13 @@ import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./historic-price.component.css']
 })
 export class HistoricPriceComponent implements OnInit {
-
   valuedate: Date = new Date();
-  todaysDate: NgbDate = new NgbDate(this.valuedate.getFullYear(), this.valuedate.getMonth(), this.valuedate.getDate());
-  lastWeekDate: Date = new Date(this.valuedate.getFullYear(), this.valuedate.getMonth(), this.valuedate.getDate() - 7);
+  yesterdaysDate: Date = new Date(this.valuedate.getFullYear(), this.valuedate.getMonth(), this.valuedate.getDate() - 1);
+  maxDate: NgbDate = new NgbDate(this.yesterdaysDate.getFullYear(), this.yesterdaysDate.getMonth() + 1, this.yesterdaysDate.getDate());
+  lastWeekDate: Date = new Date(this.yesterdaysDate.getFullYear(), this.yesterdaysDate.getMonth(), this.yesterdaysDate.getDate() - 7);
 
-  startDate: NgbDateStruct;
+  startDate: NgbDate;
+  endDate: NgbDate;
   minDate: NgbDate = new NgbDate(1990, 1, 1);
 
   constructor() {}
@@ -20,11 +21,7 @@ export class HistoricPriceComponent implements OnInit {
   ngOnInit() {
   }
 
-  onStartDateSelect(event: Event) {
-    // this.startDate = event.
-  }
-
-  onEndDateSelect() {
-    
+  onClick() {
+    console.log('From: ' + this.startDate.day + ' To: ' + this.endDate.day);
   }
 }
