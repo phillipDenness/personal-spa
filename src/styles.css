@@ -8,6 +8,22 @@ h1, h2, h3, h4, h5, h6 {
     color: rgb(180, 161, 83);
 }
 
-.jumbotron {
+.jumbotron, .card, .navbar {
     background-color: rgb(35, 43, 51);
+    border-bottom: 2px solid rgb(180, 161, 83);
+}
+
+button, .btn {
+    font-family: "IBM Plex Mono", 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+    background-color: rgba(180, 161, 83, 0);
+    color: rgb(247, 183, 205);
+    border: 2px solid rgb(113, 78, 92);
+}
+
+input[type="text"], textarea, option, select, .custom-select, #tagList {
+    background-color: rgb(28, 35, 40);
+}
+
+.card-body {
+    border: 2px solid rgb(180, 161, 83);
 }

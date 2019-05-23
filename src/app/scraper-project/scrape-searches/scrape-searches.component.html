@@ -12,7 +12,7 @@ Searches</h4>
       <tbody>
         <tr *ngFor="let searchTerms of datasource">
           <th>
-              <button class="btn btn-light" (click)="onScrapeClick(searchTerms)">Search</button>
+              <button class="btn" (click)="onScrapeClick(searchTerms)">Search</button>
           </th>
           <td *ngFor="let col of columns">
             {{searchTerms[col]}}
