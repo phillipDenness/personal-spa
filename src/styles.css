@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+main {
+    min-height: 900px;
+    background-color: rgb(35, 43, 51);
+    color: whitesmoke;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: rgb(180, 161, 83);
+}
+
+.jumbotron {
+    background-color: rgb(35, 43, 51);
+}

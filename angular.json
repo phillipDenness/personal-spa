@@ -25,7 +25,8 @@
             "styles": [
               "src/assets/scss/annotation-ui-theme.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/assets/scss/main.scss"
+              "src/assets/scss/main.scss",
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/pdf.js",
