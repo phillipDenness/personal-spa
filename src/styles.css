@@ -4,9 +4,21 @@ main {
     color: seashell;
 }
 
-h1, h2, h3, h4, h5, h6, option, select, .dark, input[type=text]:focus {
-    color: rgb(180, 161, 83);
+h2, h3, h4, h5, h6, option, select, .dark, input[type=text]:focus {
+    color: #EFBB35;
 }
+
+h1 {
+    color: #EFBB35;
+    font-size: 59.2px;
+    font-family: "IBM Plex Mono ExtraLight", "Segoe UI", "Helvetica Neue", Helvetica, Roboto, 'Open Sans', FreeSans, sans-serif;
+    font-style: italic;
+    line-height: 1;
+    font-weight: 200;
+    text-align: center;
+}
+
+
 
 p, .card-body, th, tr, input, label, h1, h2, h3, h4, h5, h6, a, textarea {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -15,7 +27,7 @@ p, .card-body, th, tr, input, label, h1, h2, h3, h4, h5, h6, a, textarea {
 }
 .jumbotron, .card, .footer, .comment-list-item {
     background-color: rgb(35, 43, 51) !important;
-    border-bottom: 2px solid rgb(180, 161, 83) !important;
+    border-bottom: 2px solid #EFBB35 !important;
 }
 
 button, .btn {
@@ -30,11 +42,11 @@ input[type="text"], textarea, option, option > select, .dark, #tagList, input[ty
 }
 
 .card-body {
-    border: 2px solid rgb(180, 161, 83);
+    border: 2px solid #EFBB35
 }
 
 .header-border {
-    border-left: 2px solid rgb(180, 161, 83);
+    border-left: 2px solid #EFBB35;
 }
 
 .toolbar .btn-danger {
@@ -45,4 +57,10 @@ input[type="text"], textarea, option, option > select, .dark, #tagList, input[ty
 .toolbar .btn-primary {
     color: white;
     background-color: #3498db;
+}
+
+.header {
+    display: block;
+    max-width: 300px;
+    margin: auto;
 }
