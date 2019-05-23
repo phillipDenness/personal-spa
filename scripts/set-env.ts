@@ -38,6 +38,9 @@ export const environment = {
   },
   fundPriceApi: {
     url: "${process.env.FUNDPRICEURL}"
+  },
+  nodeserver: {
+    url: "${process.env.NODESERVER}"
   }
 };
 `;

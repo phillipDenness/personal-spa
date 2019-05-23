@@ -14,19 +14,15 @@ export class FundPriceService {
     constructor(private httpClient: HttpClient, private socket: Socket) {}
 
     getHistoricPrice(fromDate: NgbDate, toDate: NgbDate, symbol: String): Observable<HttpResponse<string>> {
-        const serverurl = 'http://localhost:8080';
-        console.log(`${environment.fundPriceApi.url}/historic/api?` +
-        `from=${fromDate.day}-${fromDate.month}-${fromDate.year}` +
-        `&to=${toDate.day}-${toDate.month}-${toDate.year}` +
-        `&symbol=${symbol}` +
-        `&callback=${serverurl}/api/fund-price`);
 
-        return this.httpClient.get<string>(`${environment.fundPriceApi.url}/historic/api?` +
+        const url = `${environment.fundPriceApi.url}/historic/api?` +
             `from=${fromDate.day}-${fromDate.month}-${fromDate.year}` +
             `&to=${toDate.day}-${toDate.month}-${toDate.year}` +
             `&symbol=${symbol}` +
-            `&callback=${serverurl}/api/fund-price`,
-            {observe: 'response'});
+            `&callback=${environment.nodeserver.url}/api/fund-price`;
+        console.log(url);
+
+        return this.httpClient.get<string>(url,{observe: 'response'});
     }
 
     getPrice(fundLink: string): Observable<HttpResponse<FundPriceResponse>> {
