@@ -36,10 +36,12 @@ export class HistoricPriceComponent implements OnInit, OnDestroy {
   }
 
   onGenerateClick() {
-    this.fundPriceService.getHistoricPrice(this.fromDate, this.toDate, this.selectedFund.symbol).subscribe(response => {
-      console.log('Waiting for Callback - ' + response.body);
-      this.spinner.show();
-    });
+    if (this.selectedFund.symbol != null) {
+      this.fundPriceService.getHistoricPrice(this.fromDate, this.toDate, this.selectedFund.symbol).subscribe(response => {
+        console.log('Waiting for Callback - ' + response.body);
+        this.spinner.show();
+      });
+    }
   }
 
   ngOnDestroy() {
