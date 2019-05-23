@@ -3,7 +3,7 @@ GitHub page: https://github.com/phillipDenness/personal-spa
 
 ## Development server
 
-Run `npm run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start` for a dev server. Run `npm run start-dev` for angular client. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 Set environment variables.
 PRODUCTION=

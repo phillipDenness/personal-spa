@@ -35,7 +35,7 @@ import { HistoricPriceComponent } from './fund-price/historic-price/historic-pri
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
+const config: SocketIoConfig = { url: environment.nodeserver.url, options: {} };
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
