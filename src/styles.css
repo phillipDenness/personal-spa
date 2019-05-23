@@ -4,7 +4,7 @@ main {
     color: seashell;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, option, select, .dark, input[type=text]:focus {
     color: rgb(180, 161, 83);
 }
 
@@ -14,8 +14,8 @@ p, .card-body, th, tr, input, label, h1, h2, h3, h4, h5, h6, a, textarea {
     font-weight: 300;
 }
 .jumbotron, .card, .footer, .comment-list-item {
-    background-color: rgb(35, 43, 51);
-    border-bottom: 2px solid rgb(180, 161, 83);
+    background-color: rgb(35, 43, 51) !important;
+    border-bottom: 2px solid rgb(180, 161, 83) !important;
 }
 
 button, .btn {
@@ -25,7 +25,7 @@ button, .btn {
     border: 2px solid rgb(113, 78, 92);
 }
 
-input[type="text"], textarea, option, select, .custom-select, #tagList {
+input[type="text"], textarea, option, option > select, .dark, #tagList, input[type=text]:focus {
     background-color: rgb(28, 35, 40);
 }
 
@@ -38,9 +38,11 @@ input[type="text"], textarea, option, select, .custom-select, #tagList {
 }
 
 .toolbar .btn-danger {
+    color: white;
     background-color: #e74c3c;
 }
 
 .toolbar .btn-primary {
+    color: white;
     background-color: #3498db;
 }

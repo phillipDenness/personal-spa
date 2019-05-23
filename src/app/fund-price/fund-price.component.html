@@ -16,9 +16,10 @@
 </div>
 <div class="row">
   <div class="class=col-xs-12 col-sm-8">
-      <h3>Select Fund</h3>
+      <h3>Todays price</h3>
       <div class="form-group">
-        <select class="browser-default custom-select" 
+          <label>Select fund</label>
+        <select class="browser-default custom-select dark" 
         [(ngModel)]="selectedFund">
           <option *ngFor="let fundName of fundNames" [ngValue]="fundName">{{fundName.name}}</option>
         </select>
