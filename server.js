@@ -33,7 +33,7 @@ io.on("connection", socket => {
     };
   
     serverEmitter.on('s3Response', function (data) {
-      socket.emit("s3Response", data);
+      io.emit("s3Response", data);
     });
 
     socket.on("getDoc", docId => {
