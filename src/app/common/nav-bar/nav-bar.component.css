@@ -5,6 +5,7 @@
 
 .nav-link {
     color: white;
+    font-size: .9rem;
 }
 
 .navbar-nav li:nth-child(1) {

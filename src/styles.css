@@ -1,14 +1,19 @@
 main {
     min-height: 900px;
     background-color: rgb(35, 43, 51);
-    color: whitesmoke;
+    color: seashell;
 }
 
 h1, h2, h3, h4, h5, h6 {
     color: rgb(180, 161, 83);
 }
 
-.jumbotron, .card, .navbar {
+p, .card-body, th, tr, input, label, h1, h2, h3, h4, h5, h6, a {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    font-weight: 300;
+}
+.jumbotron, .card, .footer {
     background-color: rgb(35, 43, 51);
     border-bottom: 2px solid rgb(180, 161, 83);
 }
@@ -26,4 +31,8 @@ input[type="text"], textarea, option, select, .custom-select, #tagList {
 
 .card-body {
     border: 2px solid rgb(180, 161, 83);
+}
+
+.header-border {
+    border-left: 2px solid rgb(180, 161, 83);
 }

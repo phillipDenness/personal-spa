@@ -6,7 +6,7 @@
       <p>Uploaded images are stored in cloud firestore.</p>
       <a href="https://github.com/phillipDenness/floorplan-reader">View github for more information</a>
     </div>
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-4 header-border">
       <h6>Select an image for upload:</h6>
       <input class="btn-group" type="file" (change)="filePicker($event)" accept="image/*" />
       <button #uploadBtn disabled class="btn" (click)="upload()">Upload image</button>

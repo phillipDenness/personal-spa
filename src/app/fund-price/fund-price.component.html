@@ -6,7 +6,7 @@
         <p>You may get the current price for the selected fund or download a CSV container historic data.</p>
         <p>See the repository here - <a href='https://github.com/phillipDenness/historic-scraper' target='_blank'>GitHub</a></p>
         </div>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-4 header-border">
             <h6>Here is the data:</h6>
             Fund price: {{fundPriceResponse}}<br>
             <div *ngIf=s3Url><span>Fund CSV: </span><a href={{s3Url}}>{{s3Url}}</a><br></div> 

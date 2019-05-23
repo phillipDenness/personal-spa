@@ -7,11 +7,11 @@
   } 
 
   .mystory {
-    background-image: url(/assets/images/icon.png);
+    background-image: url(/assets/images/icon.svg);
   }
 
   .pdf {
-    background-image: url(/assets/images/em-annotate-highlight.svg); 
+    background-image: url(/assets/images/annotate.svg); 
   }
 
   .gumtree {
