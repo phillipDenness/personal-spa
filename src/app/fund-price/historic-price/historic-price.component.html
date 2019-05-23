@@ -7,10 +7,9 @@
             type="text" 
             ngbDatepicker 
             #d="ngbDatepicker"
-            [(ngModel)]="startDate"
+            [(ngModel)]="fromDate"
             [minDate]="(minDate)"
             [maxDate]="(maxDate)"
-            class="browser-default"
             class="form-control"
             />
     </div>
@@ -19,12 +18,22 @@
     <input (click)="e.toggle()"
             placeholder="{{yesterdaysDate | date: 'yyyy-MM-dd'}}" 
             type="text" 
-            ngbDatepicker #e="ngbDatepicker" 
-            [(ngModel)]="endDate"
-            [minDate]="(startDate)"
+            ngbDatepicker 
+            #e="ngbDatepicker" 
+            [(ngModel)]="toDate"
+            [minDate]="(fromDate)"
             [maxDate]="(maxDate)"
             class="form-control"
     />
-</div>
     </div>
-<button class="btn btn-light" (click)="onClick()">Generate CSV</button>
+</div>
+<button class="btn btn-light" (click)="onGenerateClick()">Generate CSV</button>
+
+<ngx-spinner
+    bdOpacity = 0.9
+    bdColor = "rgba(0,0,0,0.4)"
+    size = "large"
+    color = "#ffffff"
+    type = "pacman"
+    [fullScreen] = "false">
+</ngx-spinner>

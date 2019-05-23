@@ -9,7 +9,7 @@
         <div class="col-xs-12 col-sm-4">
             <h6>Here is the data:</h6>
             Fund price: {{fundPriceResponse}}<br>
-            Historic data: <br>
+            <div *ngIf=s3Url><span>Fund CSV: </span><a href={{s3Url}}>{{s3Url}}</a><br></div> 
             Fund Url: <a target="_blank" href={{selectedFund.fundLink}}>{{selectedFund.fundLink}}</a>
         </div>
       </div>
@@ -27,7 +27,7 @@
     </div>
 
   <div class="col-xs-12 col-sm-4">    
-    <app-historic-price></app-historic-price>
+    <app-historic-price [selectedFund]=selectedFund></app-historic-price>
   </div>
 </div>
 

@@ -32,7 +32,10 @@ import { FloorplanScannerService } from './floorplan-scanner/floorplan-scanner.s
 import { FundPriceComponent } from './fund-price/fund-price.component';
 import { FundPriceService } from './fund-price/fund-price.service';
 import { HistoricPriceComponent } from './fund-price/historic-price/historic-price.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -104,7 +107,9 @@ firebase.initializeApp(environment.firebase);
     ),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    HmctsAnnotationUiModule
+    HmctsAnnotationUiModule,
+    SocketIoModule.forRoot(config),
+    NgxSpinnerModule
   ],
   providers: [
     ScraperResolver,
