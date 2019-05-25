@@ -37,6 +37,10 @@ button, .btn {
     border: 2px solid rgb(113, 78, 92);
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 input[type="text"], textarea, option, option > select, .dark, #tagList, input[type=text]:focus {
     background-color: rgb(28, 35, 40);
 }
